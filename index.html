@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Financial Document Intelligence</title>
+<link rel="stylesheet" href="assets/style.css" />
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap">
+    <a class="brand" href="#top">Financial Document Intelligence</a>
+    <nav>
+      <a href="#system">Open the system</a>
+      <a href="https://github.com/rafaym1/Re-Learning-AI-Engineering/tree/add-rag-full-pipeline/Financial%20Document%20Intelligence">Source</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero" id="top">
+  <div class="wrap">
+    <span class="eyebrow">Live system — not a mockup</span>
+    <h1>Turn a data room full of filings into verified answers, reports, and memos.</h1>
+    <p class="lede">
+      Financial Document Intelligence ingests a virtual data room (VDR) of financial and legal
+      documents, then produces three things: a grounded Q&amp;A chatbot, on-demand visual reports,
+      and a full investment-memo draft — with every generated number and claim checked against its
+      source before it's shown. The system below is live: pick your own charts, watch a memo get
+      drafted, ask real questions, and open the actual source filings to verify any of it yourself.
+    </p>
+    <div class="badges">
+      <span class="badge">Claude (memo &amp; extraction)</span>
+      <span class="badge">Gemini (live chatbot)</span>
+      <span class="badge">Voyage AI embeddings + reranking</span>
+      <span class="badge">Grounding verification</span>
+    </div>
+
+    <div class="pillars">
+      <div class="pillar">
+        <span class="num">01</span>
+        <h4>Chatbot</h4>
+        <p>Semantic search across the full VDR, reranked for precision, answered with cited sources.</p>
+      </div>
+      <div class="pillar">
+        <span class="num">02</span>
+        <h4>Reports</h4>
+        <p>Pick from 58 extracted metrics; charts render live from the real facts, no manual data entry.</p>
+      </div>
+      <div class="pillar">
+        <span class="num">03</span>
+        <h4>Memo</h4>
+        <p>Watch a CIM-style memo get drafted section by section, then fact-checked against the filings.</p>
+      </div>
+      <div class="pillar">
+        <span class="num">04</span>
+        <h4>Documents</h4>
+        <p>The real source filings, open to download — verify any answer, chart, or memo claim yourself.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="system" class="alt">
+  <div class="wrap">
+    <div class="live-frame">
+      <div class="live-titlebar">
+        <span class="live-dot"></span>
+        <span>Live — rafaym/Financial_Document_Intelligence</span>
+        <a href="https://rafaym-financial-document-intelligence.hf.space" target="_blank" rel="noopener">Open in new tab ↗</a>
+      </div>
+      <iframe
+        src="https://rafaym-financial-document-intelligence.hf.space"
+        title="Financial Document Intelligence — live system"
+        loading="lazy"
+      ></iframe>
+    </div>
+
+    <div class="disclaimer">
+      <strong>About this demo:</strong> the source corpus is Planet Fitness, Inc.'s public SEC EDGAR
+      filings (10-Ks and proxy statements), used as a realistic stand-in for a confidential virtual
+      data room — no non-public or client data is used anywhere in this demo. The chatbot is
+      rate-limited per visitor; the memo shown is real output from the actual pipeline (drafted and
+      verified in advance, not re-generated on every click).
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-row">
+      <span>Financial Document Intelligence — a document-intelligence system for financial due diligence.</span>
+      <a href="https://github.com/rafaym1/Re-Learning-AI-Engineering/tree/add-rag-full-pipeline/Financial%20Document%20Intelligence">View source on GitHub</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
