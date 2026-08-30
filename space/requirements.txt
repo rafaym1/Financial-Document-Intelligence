@@ -1,0 +1,8 @@
+google-genai
+voyageai>=0.3.5
+numpy
+pydantic
+python-dotenv>=1.2.3
+gradio
+spaces
+matplotlib
