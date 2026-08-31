@@ -3,9 +3,15 @@
 HF Spaces need a flat repo with app.py at the root and the packages it imports alongside it.
 Rather than hand-maintaining a second copy of fdi/, this script copies the current source of
 truth (fdi/, the pre-built vector index, and the space/ config files) into space/dist/ -- a
-disposable build artifact, not something to edit directly or commit.
+build artifact, not something to hand-edit. Its content is regenerated on every run, but its
+.git directory (and the .gitattributes this script writes) are preserved across runs, so a
+one-time `git init` / `git remote add` / Git LFS setup there keeps working on every future
+rebuild -- HF's Xet storage rejects plain-git binary blobs, so .gitattributes must route
+.npy files through Git LFS from the very first commit.
 
 Run from the "Financial Document Intelligence" directory: python space/build_space.py
+Then, inside space/dist/: git add -A && git commit -m "..." && git push space main
+(first time only: git init && git lfs install --local && git remote add space <url>)
 """
 
 import shutil
@@ -41,8 +47,21 @@ SOURCE_DOCUMENTS = [
 
 def main():
     if DIST_DIR.exists():
-        shutil.rmtree(DIST_DIR)
-    DIST_DIR.mkdir(parents=True)
+        # Wipe everything except .git and .gitattributes, so a git remote and LFS setup
+        # done once in this directory survives every future rebuild.
+        for item in DIST_DIR.iterdir():
+            if item.name in (".git", ".gitattributes", ".gitignore"):
+                continue
+            shutil.rmtree(item) if item.is_dir() else item.unlink()
+    else:
+        DIST_DIR.mkdir(parents=True)
+
+    # HF's Xet storage rejects plain-git binary blobs -- route .npy through Git LFS from the
+    # first commit onward, so no separate `git lfs migrate` step is ever needed here again.
+    (DIST_DIR / ".gitattributes").write_text("*.npy filter=lfs diff=lfs merge=lfs -text\n", newline="\n")
+    # Running the Space locally against this bundle (e.g. to test before deploying) leaves
+    # __pycache__ behind; keep it out of what gets pushed.
+    (DIST_DIR / ".gitignore").write_text("__pycache__/\n*.pyc\n", newline="\n")
 
     fdi_dist = DIST_DIR / "fdi"
     fdi_dist.mkdir()
@@ -82,7 +101,14 @@ def main():
         shutil.copy2(SPACE_DIR / name, DIST_DIR / name)
 
     print(f"Bundle assembled at {DIST_DIR}")
-    print("Next: cd into it, git init (or add as a remote), and push to your Hugging Face Space.")
+    if (DIST_DIR / ".git").exists():
+        print("Next: cd into it, then git add -A && git commit -m \"...\" && git push space main")
+    else:
+        print(
+            "Next: cd into it, then:\n"
+            "  git init && git lfs install --local && git remote add space <your-space-url>\n"
+            "  git add -A && git commit -m \"...\" && git push space main"
+        )
 
 
 if __name__ == "__main__":
