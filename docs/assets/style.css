@@ -104,6 +104,24 @@ footer { border-top: 1px solid var(--color-neutral-300); padding: 6px; text-alig
 .disclaimer { border: 1px solid var(--color-divider); background: color-mix(in srgb, var(--color-text) 4%, transparent); padding: var(--space-4); font-size: 13px; color: var(--color-accent-700); margin-top: var(--space-6); }
 .disclaimer strong { color: var(--color-text); }
 
+/* — sub-page fixed layout (chatbot/reports/memos): fits one viewport, no scroll — */
+.sub-main { flex: 1 1 auto; min-height: 0; display: flex; flex-direction: column; padding: var(--space-2) var(--space-4) var(--space-3); max-width: 1000px; margin: 0 auto; width: 100%; overflow: hidden; }
+.sub-back { flex: 0 0 auto; align-self: flex-start; margin-bottom: var(--space-2); }
+.sub-header { flex: 0 0 auto; display: flex; align-items: center; gap: var(--space-3); margin-bottom: 2px; }
+.sub-header svg { width: clamp(18px,2.6vh,26px); height: clamp(18px,2.6vh,26px); flex-shrink: 0; }
+.sub-header h1 { font-size: clamp(22px,3.6vh,32px); text-transform: uppercase; letter-spacing: 0.03em; }
+.sub-sub { flex: 0 0 auto; color: var(--color-accent-700); font-size: clamp(12px,1.5vh,14px); margin: 0 0 var(--space-2); }
+.sub-cards { flex: 0 0 auto; display: grid; grid-template-columns: repeat(3,1fr); gap: var(--space-3); margin-bottom: var(--space-2); }
+.sub-cards .card { padding: var(--space-2) var(--space-3); gap: 2px; }
+.sub-cards .card-kicker { font-size: 9px; }
+.sub-cards .card-title { font-size: clamp(12px,1.6vh,15px); }
+.sub-cards .card-body { font-size: clamp(10px,1.3vh,12px); opacity: 0.8; }
+.sub-live-note { flex: 0 0 auto; margin: 0 0 4px; font-size: 11px; }
+.sub-live-frame { flex: 1 1 auto; min-height: 0; display: flex; flex-direction: column; }
+.sub-live-frame .live-titlebar { flex: 0 0 auto; padding: 6px var(--space-4); font-size: 12px; }
+.sub-live-frame iframe { flex: 1 1 auto; min-height: 0; height: auto; }
+.sub-disclaimer { flex: 0 0 auto; margin-top: var(--space-2); padding: 6px var(--space-4); font-size: clamp(10px,1.3vh,12px); line-height: 1.4; }
+
 /* — small screens — */
 @media (max-width: 700px) {
   .shell-fixed { height: auto; min-height: 100vh; }
@@ -119,4 +137,8 @@ footer { border-top: 1px solid var(--color-neutral-300); padding: 6px; text-alig
   main > div[style*="grid-template-columns:repeat(3,1fr)"] {
     grid-template-columns: 1fr !important;
   }
+
+  .sub-main { overflow: visible; padding: var(--space-6) var(--space-4); }
+  .sub-cards { grid-template-columns: 1fr; }
+  .sub-live-frame iframe { height: 780px; flex: none; }
 }

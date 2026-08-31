@@ -7,16 +7,16 @@
 <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
-<div class="page-shell">
+<div class="page-shell shell-fixed">
 <nav class="nav"><a href="index.html" class="nav-brand">Financial Document Intelligence</a><div class="nav-links"><a href="chatbot.html">Chatbot</a><a href="reports.html">Reports</a><a href="memos.html" class="active">Memos</a><a href="https://github.com/rafaym1/Financial-Document-Intelligence" class="nav-source">Source</a></div></nav>
-<main style="flex:1;padding:var(--space-8) var(--space-4);max-width:900px;margin:0 auto;width:100%">
-  <a href="index.html" class="btn btn-secondary" style="margin-bottom:var(--space-6)">&larr; Overview</a>
-  <div style="display:flex;align-items:center;gap:var(--space-3);margin-bottom:var(--space-2)">
-    <svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="var(--color-accent-900)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
-    <h1 style="font-size:40px;text-transform:uppercase;letter-spacing:0.03em">Memos</h1>
+<main class="sub-main">
+  <a href="index.html" class="btn btn-secondary sub-back">&larr; Overview</a>
+  <div class="sub-header">
+    <svg viewBox="0 0 24 24" fill="none" stroke="var(--color-accent-900)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+    <h1>Memos</h1>
   </div>
-  <p style="color:var(--color-accent-700);font-size:16px;margin:0 0 var(--space-8)">Watch a CIM-style investment memo get drafted section by section, then fact-checked against the filings.</p>
-  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-4);margin-bottom:var(--space-8)">
+  <p class="sub-sub">Watch a CIM-style investment memo get drafted section by section, then fact-checked against the filings.</p>
+  <div class="sub-cards">
     <div class="card blueprint elev-sm"><i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
       <div class="card-kicker">01</div><div class="card-title">Section-by-section drafting</div><div class="card-body">Executive Summary through Financial Overview, drafted in sequence from the extracted facts.</div>
     </div>
@@ -28,8 +28,8 @@
     </div>
   </div>
 
-  <div class="live-note">Live system &mdash; opens directly on the Memo tab</div>
-  <div class="live-frame">
+  <div class="sub-live-note">Live system &mdash; opens directly on the Memo tab</div>
+  <div class="live-frame sub-live-frame">
     <div class="live-titlebar">
       <span class="live-dot"></span>
       <span>Live &mdash; rafaym/Financial_Document_Intelligence</span>
@@ -42,7 +42,7 @@
     ></iframe>
   </div>
 
-  <div class="disclaimer">
+  <div class="disclaimer sub-disclaimer">
     <strong>About this demo:</strong> the source corpus is Planet Fitness, Inc.'s public SEC EDGAR
     filings (10-Ks and proxy statements), used as a realistic stand-in for a confidential virtual
     data room. The memo shown is real output from the actual pipeline, drafted and verified in

@@ -7,16 +7,16 @@
 <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
-<div class="page-shell">
+<div class="page-shell shell-fixed">
 <nav class="nav"><a href="index.html" class="nav-brand">Financial Document Intelligence</a><div class="nav-links"><a href="chatbot.html">Chatbot</a><a href="reports.html" class="active">Reports</a><a href="memos.html">Memos</a><a href="https://github.com/rafaym1/Financial-Document-Intelligence" class="nav-source">Source</a></div></nav>
-<main style="flex:1;padding:var(--space-8) var(--space-4);max-width:900px;margin:0 auto;width:100%">
-  <a href="index.html" class="btn btn-secondary" style="margin-bottom:var(--space-6)">&larr; Overview</a>
-  <div style="display:flex;align-items:center;gap:var(--space-3);margin-bottom:var(--space-2)">
-    <svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="var(--color-accent-900)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
-    <h1 style="font-size:40px;text-transform:uppercase;letter-spacing:0.03em">Reports</h1>
+<main class="sub-main">
+  <a href="index.html" class="btn btn-secondary sub-back">&larr; Overview</a>
+  <div class="sub-header">
+    <svg viewBox="0 0 24 24" fill="none" stroke="var(--color-accent-900)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+    <h1>Reports</h1>
   </div>
-  <p style="color:var(--color-accent-700);font-size:16px;margin:0 0 var(--space-8)">Pick from the metrics extracted out of the filings; charts render live from the real facts.</p>
-  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-4);margin-bottom:var(--space-8)">
+  <p class="sub-sub">Pick from the metrics extracted out of the filings; charts render live from the real facts.</p>
+  <div class="sub-cards">
     <div class="card blueprint elev-sm"><i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
       <div class="card-kicker">01</div><div class="card-title">Extracted metrics</div><div class="card-body">58 financial metrics pulled from the filings via map-reduce extraction &mdash; no manual data entry.</div>
     </div>
@@ -28,8 +28,8 @@
     </div>
   </div>
 
-  <div class="live-note">Live system &mdash; opens directly on the Reports tab</div>
-  <div class="live-frame">
+  <div class="sub-live-note">Live system &mdash; opens directly on the Reports tab</div>
+  <div class="live-frame sub-live-frame">
     <div class="live-titlebar">
       <span class="live-dot"></span>
       <span>Live &mdash; rafaym/Financial_Document_Intelligence</span>
@@ -42,7 +42,7 @@
     ></iframe>
   </div>
 
-  <div class="disclaimer">
+  <div class="disclaimer sub-disclaimer">
     <strong>About this demo:</strong> the source corpus is Planet Fitness, Inc.'s public SEC EDGAR
     filings (10-Ks and proxy statements), used as a realistic stand-in for a confidential virtual
     data room &mdash; no non-public or client data is used anywhere in this demo.
