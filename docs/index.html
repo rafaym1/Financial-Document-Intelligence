@@ -1,99 +1,60 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Financial Document Intelligence</title>
-<link rel="stylesheet" href="assets/style.css" />
+<link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
+<div class="page-shell shell-fixed">
+<nav class="nav"><a href="index.html" class="nav-brand">Financial Document Intelligence</a><div class="nav-links"><a href="chatbot.html">Chatbot</a><a href="reports.html">Reports</a><a href="memos.html">Memos</a><a href="https://github.com/rafaym1/Financial-Document-Intelligence" class="nav-source">Source</a></div></nav>
 
-<header class="topbar">
-  <div class="wrap">
-    <a class="brand" href="#top">Financial Document Intelligence</a>
-    <nav>
-      <a href="#system">Open the system</a>
-      <a href="https://github.com/rafaym1/Re-Learning-AI-Engineering/tree/add-rag-full-pipeline/Financial%20Document%20Intelligence">Source</a>
-    </nav>
-  </div>
-</header>
+<div class="note-banner">
+  <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+  <div class="note-serial" style="top:6px;right:var(--space-4)">FDI &middot; SER. NO. 0000001 &middot; 2026</div>
+  <div class="note-serial" style="bottom:6px;left:var(--space-4)">THIS PAGE IS TENDER FOR ALL FINANCIAL DOCUMENTS</div>
 
-<section class="hero" id="top">
-  <div class="wrap">
-    <span class="eyebrow">Live system — not a mockup</span>
-    <h1>Turn a data room full of filings into verified answers, reports, and memos.</h1>
-    <p class="lede">
-      Financial Document Intelligence ingests a virtual data room (VDR) of financial and legal
-      documents, then produces three things: a grounded Q&amp;A chatbot, on-demand visual reports,
-      and a full investment-memo draft — with every generated number and claim checked against its
-      source before it's shown. The system below is live: pick your own charts, watch a memo get
-      drafted, ask real questions, and open the actual source filings to verify any of it yourself.
-    </p>
-    <div class="badges">
-      <span class="badge">Claude (memo &amp; extraction)</span>
-      <span class="badge">Gemini (live chatbot)</span>
-      <span class="badge">Voyage AI embeddings + reranking</span>
-      <span class="badge">Grounding verification</span>
-    </div>
-
-    <div class="pillars">
-      <div class="pillar">
-        <span class="num">01</span>
-        <h4>Chatbot</h4>
-        <p>Semantic search across the full VDR, reranked for precision, answered with cited sources.</p>
-      </div>
-      <div class="pillar">
-        <span class="num">02</span>
-        <h4>Reports</h4>
-        <p>Pick from 58 extracted metrics; charts render live from the real facts, no manual data entry.</p>
-      </div>
-      <div class="pillar">
-        <span class="num">03</span>
-        <h4>Memo</h4>
-        <p>Watch a CIM-style memo get drafted section by section, then fact-checked against the filings.</p>
-      </div>
-      <div class="pillar">
-        <span class="num">04</span>
-        <h4>Documents</h4>
-        <p>The real source filings, open to download — verify any answer, chart, or memo claim yourself.</p>
-      </div>
+  <div class="note-rosette">
+    <div class="note-rosette-inner">
+      <svg viewBox="0 0 24 24" width="60%" height="60%" fill="none" stroke="var(--bill-ink)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="3" y1="22" x2="21" y2="22"></line><line x1="6" y1="18" x2="6" y2="11"></line><line x1="10" y1="18" x2="10" y2="11"></line><line x1="14" y1="18" x2="14" y2="11"></line><line x1="18" y1="18" x2="18" y2="11"></line><polygon points="12 2 20 7 4 7"></polygon>
+      </svg>
     </div>
   </div>
-</section>
+  <div style="display:flex;flex-direction:column;align-items:center;gap:6px;text-align:center">
+    <div class="note-ribbon">FINANCIAL DOCUMENT INTELLIGENCE</div>
+    <div class="note-tagline">In Data We Trust</div>
+  </div>
+</div>
 
-<section id="system" class="alt">
-  <div class="wrap">
-    <div class="live-frame">
-      <div class="live-titlebar">
-        <span class="live-dot"></span>
-        <span>Live — rafaym/Financial_Document_Intelligence</span>
-        <a href="https://rafaym-financial-document-intelligence.hf.space" target="_blank" rel="noopener">Open in new tab ↗</a>
+<main class="hero-main">
+  <p style="max-width:640px;text-align:center;margin:0 0 var(--space-4);font-size:clamp(13px,1.8vh,16px);line-height:1.5">One note, three denominations of access &mdash; query documents, generate reports, and draft memos from a single desk.</p>
+  <div class="coin-grid">
+    <a href="chatbot.html" class="coin-link">
+      <div class="coin copper"><div class="coin-ring"></div>
+        <svg viewBox="0 0 24 24" width="34%" height="34%" fill="none" stroke="var(--copper-dark)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
       </div>
-      <iframe
-        src="https://rafaym-financial-document-intelligence.hf.space"
-        title="Financial Document Intelligence — live system"
-        loading="lazy"
-      ></iframe>
-    </div>
-
-    <div class="disclaimer">
-      <strong>About this demo:</strong> the source corpus is Planet Fitness, Inc.'s public SEC EDGAR
-      filings (10-Ks and proxy statements), used as a realistic stand-in for a confidential virtual
-      data room — no non-public or client data is used anywhere in this demo. The chatbot is
-      rate-limited per visitor; the memo shown is real output from the actual pipeline (drafted and
-      verified in advance, not re-generated on every click).
-    </div>
+      <div class="coin-label">Chatbot</div>
+      <div class="coin-desc">Ask questions across filings, memos and reports</div>
+    </a>
+    <a href="reports.html" class="coin-link">
+      <div class="coin silver"><div class="coin-ring"></div>
+        <svg viewBox="0 0 24 24" width="34%" height="34%" fill="none" stroke="var(--silver-dark)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+      </div>
+      <div class="coin-label">Reports</div>
+      <div class="coin-desc">Generate and distribute structured financial reports</div>
+    </a>
+    <a href="memos.html" class="coin-link">
+      <div class="coin gold"><div class="coin-ring"></div>
+        <svg viewBox="0 0 24 24" width="34%" height="34%" fill="none" stroke="var(--gold-dark)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+      </div>
+      <div class="coin-label">Memos</div>
+      <div class="coin-desc">Draft, review and version internal memoranda</div>
+    </a>
   </div>
-</section>
-
-<footer>
-  <div class="wrap">
-    <div class="foot-row">
-      <span>Financial Document Intelligence — a document-intelligence system for financial due diligence.</span>
-      <a href="https://github.com/rafaym1/Re-Learning-AI-Engineering/tree/add-rag-full-pipeline/Financial%20Document%20Intelligence">View source on GitHub</a>
-    </div>
-  </div>
-</footer>
-
+</main>
+<footer>FINANCIAL DOCUMENT INTELLIGENCE &mdash; INTERNAL USE ONLY</footer>
+</div>
 </body>
 </html>

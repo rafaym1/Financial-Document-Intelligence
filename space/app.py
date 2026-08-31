@@ -170,8 +170,8 @@ with gr.Blocks(title="Financial Document Intelligence") as demo:
         "used here as a stand-in for a confidential virtual data room."
     )
 
-    with gr.Tabs():
-        with gr.Tab("Chatbot"):
+    with gr.Tabs() as tabs:
+        with gr.Tab("Chatbot", id="chatbot"):
             gr.Markdown(
                 "Ask a real question. Retrieval runs in two stages (a wide embedding search, then a "
                 "reranking pass), then every claim is checked against the source before it's shown. "
@@ -199,7 +199,7 @@ with gr.Blocks(title="Financial Document Intelligence") as demo:
                 outputs=[answer_box, sources_box, verification_box],
             )
 
-        with gr.Tab("Reports"):
+        with gr.Tab("Reports", id="reports"):
             gr.Markdown(
                 "Pick the metrics you want to see. Charts are rendered live from the facts this "
                 "system extracted from the filings via map-reduce extraction -- no manual data entry."
@@ -214,7 +214,7 @@ with gr.Blocks(title="Financial Document Intelligence") as demo:
 
             generate_charts_btn.click(fn=generate_charts, inputs=[metric_picker], outputs=[chart_gallery])
 
-        with gr.Tab("Memo"):
+        with gr.Tab("Memo", id="memo"):
             gr.Markdown(
                 "Click to watch the memo get drafted section by section, then fact-checked against "
                 "the source filings -- the same pipeline that produced the real memo shown below."
@@ -224,13 +224,21 @@ with gr.Blocks(title="Financial Document Intelligence") as demo:
 
             generate_memo_btn.click(fn=generate_memo_staged, inputs=[], outputs=[memo_output])
 
-        with gr.Tab("Documents"):
+        with gr.Tab("Documents", id="documents"):
             gr.Markdown(
                 "The real source filings this whole system was built on -- open or download them to "
                 "verify any answer, chart, or memo claim against the original text."
             )
             for label, path in SOURCE_DOCUMENTS:
                 gr.File(value=path, label=label, interactive=False)
+
+    def _select_tab_from_query(request: gr.Request):
+        """Lets the docs site deep-link into a specific tab, e.g. .../?tab=reports."""
+        requested = dict(request.query_params).get("tab", "chatbot")
+        valid_ids = {"chatbot", "reports", "memo", "documents"}
+        return gr.Tabs(selected=requested if requested in valid_ids else "chatbot")
+
+    demo.load(fn=_select_tab_from_query, inputs=None, outputs=[tabs])
 
 if __name__ == "__main__":
     demo.launch()

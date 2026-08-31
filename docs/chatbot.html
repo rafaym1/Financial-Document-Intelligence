@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chatbot &mdash; Financial Document Intelligence</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<div class="page-shell">
+<nav class="nav"><a href="index.html" class="nav-brand">Financial Document Intelligence</a><div class="nav-links"><a href="chatbot.html" class="active">Chatbot</a><a href="reports.html">Reports</a><a href="memos.html">Memos</a><a href="https://github.com/rafaym1/Financial-Document-Intelligence" class="nav-source">Source</a></div></nav>
+<main style="flex:1;padding:var(--space-8) var(--space-4);max-width:900px;margin:0 auto;width:100%">
+  <a href="index.html" class="btn btn-secondary" style="margin-bottom:var(--space-6)">&larr; Overview</a>
+  <div style="display:flex;align-items:center;gap:var(--space-3);margin-bottom:var(--space-2)">
+    <svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="var(--color-accent-900)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+    <h1 style="font-size:40px;text-transform:uppercase;letter-spacing:0.03em">Chatbot</h1>
+  </div>
+  <p style="color:var(--color-accent-700);font-size:16px;margin:0 0 var(--space-8)">Ask questions across filings, memos and reports in plain language.</p>
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-4);margin-bottom:var(--space-8)">
+    <div class="card blueprint elev-sm"><i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+      <div class="card-kicker">01</div><div class="card-title">Natural language Q&amp;A</div><div class="card-body">Query balance sheets and filings without writing formulas or SQL.</div>
+    </div>
+    <div class="card blueprint elev-sm"><i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+      <div class="card-kicker">02</div><div class="card-title">Source-linked answers</div><div class="card-body">Every response is checked against the retrieved filing text before it's shown, and cites where it came from.</div>
+    </div>
+    <div class="card blueprint elev-sm"><i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+      <div class="card-kicker">03</div><div class="card-title">Two-stage retrieval</div><div class="card-body">A wide embedding search, then a reranking pass, over the full document set.</div>
+    </div>
+  </div>
+
+  <div class="live-note">Live system &mdash; opens directly on the Chatbot tab</div>
+  <div class="live-frame">
+    <div class="live-titlebar">
+      <span class="live-dot"></span>
+      <span>Live &mdash; rafaym/Financial_Document_Intelligence</span>
+      <a href="https://rafaym-financial-document-intelligence.hf.space" target="_blank" rel="noopener">Open in new tab &#8599;</a>
+    </div>
+    <iframe
+      src="https://rafaym-financial-document-intelligence.hf.space/?tab=chatbot"
+      title="Financial Document Intelligence &mdash; live chatbot"
+      loading="lazy"
+    ></iframe>
+  </div>
+
+  <div class="disclaimer">
+    <strong>About this demo:</strong> the source corpus is Planet Fitness, Inc.'s public SEC EDGAR
+    filings (10-Ks and proxy statements), used as a realistic stand-in for a confidential virtual
+    data room &mdash; no non-public or client data is used anywhere in this demo. The chatbot is
+    rate-limited per visitor.
+  </div>
+</main>
+<footer>FINANCIAL DOCUMENT INTELLIGENCE &mdash; INTERNAL USE ONLY</footer>
+</div>
+</body>
+</html>
