@@ -104,15 +104,21 @@ footer { border-top: 1px solid var(--color-neutral-300); padding: 6px; text-alig
 .disclaimer { border: 1px solid var(--color-divider); background: color-mix(in srgb, var(--color-text) 4%, transparent); padding: var(--space-4); font-size: 13px; color: var(--color-accent-700); margin-top: var(--space-6); }
 .disclaimer strong { color: var(--color-text); }
 
-/* — chatbot: native chat UI in an engraved banknote frame — */
-.chat-frame { position: relative; flex: 1 1 auto; min-height: 0; display: flex; flex-direction: column; background: var(--bill-frame); border: 2px solid var(--bill-ink); box-shadow: inset 0 0 0 5px var(--bill-paper), inset 0 0 0 7px var(--bill-ink), inset 0 0 0 10px var(--bill-paper); padding: var(--space-3) var(--space-6) var(--space-3); }
-.chat-serial { flex: 0 0 auto; text-align: center; font-size: 8px; letter-spacing: 0.14em; color: var(--bill-mid); }
-.chat-header { flex: 0 0 auto; display: flex; align-items: center; justify-content: center; gap: var(--space-3); margin: var(--space-2) 0 var(--space-3); }
-.chat-rosette { position: relative; width: 40px; height: 40px; border-radius: 50%; flex: 0 0 auto; background-image: repeating-conic-gradient(from 0deg, var(--bill-mid) 0deg 0.8deg, transparent 0.8deg 6deg); box-shadow: inset 0 0 0 2px var(--bill-light), inset 0 0 0 6px var(--bill-frame), inset 0 0 0 8px var(--bill-mid), inset 0 0 0 10px var(--bill-frame); display: flex; align-items: center; justify-content: center; }
-.chat-rosette-inner { width: 46%; height: 46%; border-radius: 50%; background: var(--bill-paper-2); display: flex; align-items: center; justify-content: center; }
-.chat-rosette svg { width: 60%; height: 60%; }
-.chat-header h1 { font-size: 22px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--bill-ink); margin: 0; }
-.chat-header-sub { font-size: 10px; letter-spacing: 0.14em; color: var(--bill-mid); text-transform: uppercase; }
+/* — engraved banknote frame chrome: shared shell for chatbot/memos native UIs — */
+.doc-frame { position: relative; flex: 1 1 auto; min-height: 0; display: flex; flex-direction: column; background: var(--bill-frame); border: 2px solid var(--bill-ink); box-shadow: inset 0 0 0 5px var(--bill-paper), inset 0 0 0 7px var(--bill-ink), inset 0 0 0 10px var(--bill-paper); padding: var(--space-3) var(--space-6) var(--space-3); }
+.doc-serial { flex: 0 0 auto; text-align: center; font-size: 8px; letter-spacing: 0.14em; color: var(--bill-mid); }
+.doc-header { flex: 0 0 auto; display: flex; align-items: center; justify-content: center; gap: var(--space-3); margin: var(--space-2) 0 var(--space-3); }
+.doc-rosette { position: relative; width: 40px; height: 40px; border-radius: 50%; flex: 0 0 auto; background-image: repeating-conic-gradient(from 0deg, var(--bill-mid) 0deg 0.8deg, transparent 0.8deg 6deg); box-shadow: inset 0 0 0 2px var(--bill-light), inset 0 0 0 6px var(--bill-frame), inset 0 0 0 8px var(--bill-mid), inset 0 0 0 10px var(--bill-frame); display: flex; align-items: center; justify-content: center; }
+.doc-rosette-inner { width: 46%; height: 46%; border-radius: 50%; background: var(--bill-paper-2); display: flex; align-items: center; justify-content: center; }
+.doc-rosette svg { width: 60%; height: 60%; }
+.doc-header h1 { font-size: 22px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--bill-ink); margin: 0; }
+.doc-header-sub { font-size: 10px; letter-spacing: 0.14em; color: var(--bill-mid); text-transform: uppercase; }
+.doc-btn { cursor: pointer; font-family: var(--font-heading); letter-spacing: 0.06em; text-transform: uppercase; font-size: 14px; border: 1.5px solid var(--bill-ink); background: var(--bill-ink); color: var(--bill-paper); padding: 10px 24px; }
+.doc-btn:hover:not(:disabled) { opacity: 0.88; }
+.doc-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+.doc-btn.secondary { background: var(--bill-paper); color: var(--bill-ink); }
+.doc-card { position: relative; border: 1px solid var(--color-divider); border-color: var(--bill-mid); background: var(--bill-paper); padding: var(--space-4); }
+.doc-card > .corner { color: var(--bill-ink); }
 
 .chat-scroll { flex: 1 1 auto; min-height: 0; overflow-y: auto; display: flex; flex-direction: column; gap: var(--space-3); padding-right: 4px; }
 .chat-scroll::-webkit-scrollbar { width: 8px; }
@@ -142,6 +148,28 @@ footer { border-top: 1px solid var(--color-neutral-300); padding: 6px; text-alig
 .chat-composer button { cursor: pointer; font-family: var(--font-heading); letter-spacing: 0.06em; text-transform: uppercase; font-size: 14px; border: 1.5px solid var(--bill-ink); background: var(--bill-ink); color: var(--bill-paper); padding: 8px 18px; }
 .chat-composer button:disabled { opacity: 0.6; cursor: not-allowed; }
 .chat-footnote { flex: 0 0 auto; margin: var(--space-2) 0 0; font-size: 11px; color: var(--color-accent-700); text-align: center; }
+
+/* — memos: staged drafting log + rendered document, in the same doc-frame shell — */
+.memo-scroll { flex: 1 1 auto; min-height: 0; overflow-y: auto; padding-right: 4px; }
+.memo-scroll::-webkit-scrollbar { width: 8px; }
+.memo-scroll::-webkit-scrollbar-thumb { background: var(--color-neutral-300); }
+.memo-intro { height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: var(--space-4); text-align: center; padding: var(--space-4); }
+.memo-intro p { max-width: 520px; margin: 0; font-size: 14px; line-height: 1.6; color: var(--bill-ink); }
+.memo-log-text { font-size: 14px; line-height: 1.7; color: var(--bill-ink); }
+.memo-log-text p { margin: 0 0 10px; }
+.memo-log-text p:last-child { margin-bottom: 0; }
+.memo-doc { font-size: 14px; line-height: 1.7; color: var(--bill-ink); }
+.memo-doc h1 { font-family: var(--font-heading); font-size: 19px; letter-spacing: 0.04em; text-transform: uppercase; color: var(--bill-ink); margin: var(--space-4) 0 var(--space-2); border-bottom: 1px solid var(--bill-mid); padding-bottom: 4px; }
+.memo-doc h1:first-child { margin-top: 0; }
+.memo-doc h2 { font-family: var(--font-heading); font-size: 15px; letter-spacing: 0.03em; color: var(--bill-ink); margin: var(--space-3) 0 6px; }
+.memo-doc h3 { font-size: 14px; margin: var(--space-2) 0 4px; }
+.memo-doc p { margin: 0 0 10px; }
+.memo-doc ul { margin: 0 0 10px; padding-left: 20px; }
+.memo-doc li { margin-bottom: 4px; }
+.memo-doc table { width: 100%; border-collapse: collapse; margin: var(--space-2) 0 var(--space-4); font-size: 13px; }
+.memo-doc th, .memo-doc td { border: 1px solid var(--bill-mid); padding: 6px 10px; text-align: left; }
+.memo-doc th { background: var(--bill-paper-2); font-family: var(--font-heading); text-transform: uppercase; font-size: 11px; letter-spacing: 0.05em; }
+.memo-actions { display: flex; justify-content: center; margin-top: var(--space-3); }
 
 /* — sub-page fixed layout (chatbot/reports/memos): fits one viewport, no scroll — */
 .sub-main { flex: 1 1 auto; min-height: 0; display: flex; flex-direction: column; padding: var(--space-2) var(--space-4) var(--space-3); max-width: 1000px; margin: 0 auto; width: 100%; overflow: hidden; }
@@ -181,6 +209,6 @@ footer { border-top: 1px solid var(--color-neutral-300); padding: 6px; text-alig
   .sub-cards { grid-template-columns: 1fr; }
   .sub-live-frame iframe { height: 780px; flex: none; }
 
-  .chat-frame { min-height: 70vh; }
+  .doc-frame { min-height: 70vh; }
   .chat-msg-user, .chat-msg-bot { max-width: 92%; }
 }
