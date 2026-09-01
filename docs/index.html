@@ -5,6 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Financial Document Intelligence</title>
 <link rel="stylesheet" href="assets/style.css">
+<script>
+// Nudge the live Space awake as soon as this page loads, so it's already warm by the time a
+// visitor clicks through to Chatbot/Reports/Memos instead of them waiting on a cold start.
+// Fire-and-forget: response and errors are both irrelevant, this is purely a wake-up ping.
+fetch("https://rafaym-financial-document-intelligence.hf.space/", { mode: "no-cors", keepalive: true }).catch(() => {});
+</script>
 </head>
 <body>
 <div class="page-shell shell-fixed">
