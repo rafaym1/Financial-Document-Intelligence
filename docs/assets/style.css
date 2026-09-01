@@ -171,6 +171,25 @@ footer { border-top: 1px solid var(--color-neutral-300); padding: 6px; text-alig
 .memo-doc th { background: var(--bill-paper-2); font-family: var(--font-heading); text-transform: uppercase; font-size: 11px; letter-spacing: 0.05em; }
 .memo-actions { display: flex; justify-content: center; margin-top: var(--space-3); }
 
+/* — reports: metric picker + chart gallery, in the same doc-frame shell — */
+.reports-scroll { flex: 1 1 auto; min-height: 0; overflow-y: auto; padding-right: 4px; display: flex; flex-direction: column; gap: var(--space-4); }
+.reports-scroll::-webkit-scrollbar { width: 8px; }
+.reports-scroll::-webkit-scrollbar-thumb { background: var(--color-neutral-300); }
+.reports-picker { flex: 0 0 auto; display: flex; flex-wrap: wrap; gap: 6px; }
+.reports-chip { cursor: pointer; background: var(--bill-paper); font: inherit; font-family: var(--font-heading); font-size: 11px; letter-spacing: 0.04em; white-space: nowrap; border: 1px solid var(--bill-mid); color: var(--bill-ink); padding: 5px 10px; }
+.reports-chip:hover:not(.active) { background: var(--bill-paper-2); }
+.reports-chip.active { background: var(--bill-ink); color: var(--bill-paper); }
+.reports-gallery { flex: 1 1 auto; display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-3); align-content: start; }
+.reports-gallery figure { margin: 0; border: 1px solid var(--bill-mid); background: #fff; padding: var(--space-2); }
+.reports-gallery img { width: 100%; height: auto; display: block; }
+.reports-gallery figcaption { margin-top: 6px; font-family: var(--font-heading); font-size: 12px; letter-spacing: 0.04em; text-transform: uppercase; color: var(--bill-ink); text-align: center; }
+.reports-status { grid-column: 1 / -1; margin: var(--space-4) 0; text-align: center; font-size: 14px; color: var(--bill-mid); }
+.reports-bar { flex: 0 0 auto; display: flex; align-items: center; justify-content: space-between; gap: var(--space-3); border-top: 1.5px solid var(--bill-ink); border-bottom: 1.5px solid var(--bill-ink); background: var(--bill-paper); padding: var(--space-3); }
+.reports-count { font-family: var(--font-heading); font-size: 12px; letter-spacing: 0.05em; color: var(--bill-mid); text-transform: uppercase; }
+@media (max-width: 700px) {
+  .reports-gallery { grid-template-columns: 1fr; }
+}
+
 /* — sub-page fixed layout (chatbot/reports/memos): fits one viewport, no scroll — */
 .sub-main { flex: 1 1 auto; min-height: 0; display: flex; flex-direction: column; padding: var(--space-2) var(--space-4) var(--space-3); max-width: 1000px; margin: 0 auto; width: 100%; overflow: hidden; }
 .sub-back { flex: 0 0 auto; align-self: flex-start; margin-bottom: var(--space-2); }

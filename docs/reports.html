@@ -11,44 +11,148 @@
 <nav class="nav"><a href="index.html" class="nav-brand">Financial Document Intelligence</a><div class="nav-links"><a href="chatbot.html">Chatbot</a><a href="reports.html" class="active">Reports</a><a href="memos.html">Memos</a><a href="https://github.com/rafaym1/Financial-Document-Intelligence" class="nav-source">Source</a></div></nav>
 <main class="sub-main">
   <a href="index.html" class="btn btn-secondary sub-back">&larr; Overview</a>
-  <div class="sub-header">
-    <svg viewBox="0 0 24 24" fill="none" stroke="var(--color-accent-900)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
-    <h1>Reports</h1>
-  </div>
-  <p class="sub-sub">Pick from the metrics extracted out of the filings; charts render live from the real facts.</p>
-  <div class="sub-cards">
-    <div class="card blueprint elev-sm"><i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
-      <div class="card-kicker">01</div><div class="card-title">Extracted metrics</div><div class="card-body">58 financial metrics pulled from the filings via map-reduce extraction &mdash; no manual data entry.</div>
+
+  <div class="doc-frame">
+    <div class="doc-serial">SERIES 2026 &middot; METRICS EXTRACTED FROM PUBLIC FILINGS</div>
+    <div class="doc-header">
+      <div class="doc-rosette">
+        <div class="doc-rosette-inner">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--bill-ink)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+        </div>
+      </div>
+      <div>
+        <h1>Reports</h1>
+        <div class="doc-header-sub">In Data We Trust</div>
+      </div>
     </div>
-    <div class="card blueprint elev-sm"><i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
-      <div class="card-kicker">02</div><div class="card-title">Trend charts</div><div class="card-body">Select any combination of metrics and render period-over-period trend charts on demand.</div>
+
+    <div class="reports-scroll" id="reportsScroll">
+      <div class="reports-picker" id="reportsPicker"></div>
+      <div class="reports-gallery" id="reportsGallery">
+        <p class="reports-status">Select metrics above, then generate charts.</p>
+      </div>
     </div>
-    <div class="card blueprint elev-sm"><i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
-      <div class="card-kicker">03</div><div class="card-title">Source documents</div><div class="card-body">The original filings behind every chart are available to open or download for verification.</div>
+
+    <div class="reports-bar">
+      <span class="reports-count" id="reportsCount"></span>
+      <button type="button" class="doc-btn" id="reportsGenerateBtn">Generate Charts</button>
     </div>
   </div>
 
-  <div class="sub-live-note">Live system &mdash; opens directly on the Reports tab</div>
-  <div class="live-frame sub-live-frame">
-    <div class="live-titlebar">
-      <span class="live-dot"></span>
-      <span>Live &mdash; rafaym/Financial_Document_Intelligence</span>
-      <a href="https://rafaym-financial-document-intelligence.hf.space" target="_blank" rel="noopener">Open in new tab &#8599;</a>
-    </div>
-    <iframe
-      src="https://rafaym-financial-document-intelligence.hf.space/?tab=reports"
-      title="Financial Document Intelligence &mdash; live reports"
-      loading="lazy"
-    ></iframe>
-  </div>
-
-  <div class="disclaimer sub-disclaimer">
-    <strong>About this demo:</strong> the source corpus is Planet Fitness, Inc.'s public SEC EDGAR
-    filings (10-Ks and proxy statements), used as a realistic stand-in for a confidential virtual
-    data room &mdash; no non-public or client data is used anywhere in this demo.
-  </div>
+  <p class="chat-footnote">
+    Source corpus: Planet Fitness, Inc.'s public SEC filings, used as a stand-in for a confidential virtual data room. 58 metrics extracted via map-reduce extraction &mdash; no manual data entry; charts render live from the real facts.
+    <a href="https://rafaym-financial-document-intelligence.hf.space/?tab=reports" target="_blank" rel="noopener">Open the live system directly &#8599;</a>
+  </p>
 </main>
 <footer>FINANCIAL DOCUMENT INTELLIGENCE &mdash; INTERNAL USE ONLY</footer>
 </div>
+<script>
+(function () {
+  const API_BASE = "https://rafaym-financial-document-intelligence.hf.space";
+  const API_NAME = "generate_charts";
+
+  const METRICS = [
+    "Adjusted EBITDA", "Adjusted net income", "Adjusted net income per share, diluted",
+    "Advertising expenses (corporate-owned clubs)", "Advertising purchase commitments",
+    "Average Unit Volume (AUV)", "Average monthly dues per member", "Average royalty rate",
+    "Capital expenditures (Corporate-owned clubs segment)", "Cash and cash equivalents",
+    "Corporate-owned Clubs", "Corporate-owned clubs", "Corporate-owned clubs segment revenue",
+    "Depreciation and amortization", "Depreciation expense",
+    "Diluted Net Income (Earnings) Per Share of Class A Common Stock", "Effective tax rate",
+    "Equipment segment revenue", "Four-wall Adjusted EBITDA Margin", "Franchise segment revenue",
+    "Income Before Income Taxes", "Income before income taxes", "Income from operations",
+    "Interest expense", "Interest income", "Long-term debt, net of current maturities",
+    "Net Deferred Tax Assets", "Net cash provided by operating activities",
+    "Net cash used in financing activities", "Net cash used in investing activities",
+    "Net deferred tax assets", "Net income", "Net income attributable to Planet Fitness, Inc.",
+    "PF Black Card penetration percentage", "Percentage of new members joining online or via mobile app",
+    "Provision for income taxes", "Restricted cash held by Trustee",
+    "Royalty-adjusted Four-wall EBITDA Margin", "Segment Adjusted EBITDA", "System-wide Sales",
+    "Tax benefit arrangement liabilities", "Tax benefit obligation", "Total Clubs", "Total Members",
+    "Total Revenue", "Total assets", "Total capital expenditures",
+    "Total cash equivalents and marketable securities", "Total deferred revenue",
+    "Total intangible assets, net", "Total lease assets", "Total lease cost",
+    "Total lease liabilities", "Total long-lived assets, net", "Total property and equipment, net",
+    "Total revenue from related parties", "Total stockholders' deficit", "United States revenue",
+  ];
+  const DEFAULT_METRICS = ["Total Revenue", "Adjusted EBITDA", "Net income", "Total assets"];
+
+  const picker = document.getElementById("reportsPicker");
+  const gallery = document.getElementById("reportsGallery");
+  const generateBtn = document.getElementById("reportsGenerateBtn");
+  const countEl = document.getElementById("reportsCount");
+
+  const selected = new Set(DEFAULT_METRICS);
+
+  function updateCount() {
+    countEl.textContent = selected.size + (selected.size === 1 ? " metric selected" : " metrics selected");
+    generateBtn.disabled = selected.size === 0;
+  }
+
+  function renderPicker() {
+    picker.innerHTML = "";
+    for (const metric of METRICS) {
+      const chip = document.createElement("button");
+      chip.type = "button";
+      chip.className = "reports-chip" + (selected.has(metric) ? " active" : "");
+      chip.textContent = metric;
+      chip.addEventListener("click", () => {
+        if (selected.has(metric)) selected.delete(metric); else selected.add(metric);
+        chip.classList.toggle("active");
+        updateCount();
+      });
+      picker.appendChild(chip);
+    }
+  }
+
+  async function generate() {
+    if (selected.size === 0) return;
+    generateBtn.disabled = true;
+    gallery.innerHTML = '<p class="reports-status">Rendering charts&hellip;</p>';
+    try {
+      const postRes = await fetch(`${API_BASE}/gradio_api/call/${API_NAME}`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ data: [Array.from(selected)] }),
+      });
+      if (!postRes.ok) throw new Error("request failed: " + postRes.status);
+      const { event_id } = await postRes.json();
+
+      const streamRes = await fetch(`${API_BASE}/gradio_api/call/${API_NAME}/${event_id}`);
+      if (!streamRes.ok) throw new Error("stream failed: " + streamRes.status);
+      const text = await streamRes.text();
+      const match = text.match(/^event: complete\r?\ndata: ([\s\S]*?)\r?\n\r?\n/m);
+      if (!match) throw new Error("no result in stream");
+      const [items] = JSON.parse(match[1]);
+
+      if (!items || !items.length) {
+        gallery.innerHTML = '<p class="reports-status">No multi-period data available for the selected metrics &mdash; try a different combination.</p>';
+        return;
+      }
+      gallery.innerHTML = "";
+      for (const item of items) {
+        const fig = document.createElement("figure");
+        const img = document.createElement("img");
+        img.src = item.image.url;
+        img.alt = item.caption || "";
+        img.loading = "lazy";
+        const caption = document.createElement("figcaption");
+        caption.textContent = item.caption || "";
+        fig.appendChild(img);
+        fig.appendChild(caption);
+        gallery.appendChild(fig);
+      }
+    } catch (err) {
+      gallery.innerHTML = `<p class="reports-status">Couldn&rsquo;t reach the live system just now. <a href="${API_BASE}/?tab=reports" target="_blank" rel="noopener">Open it directly &#8599;</a>, or try again.</p>`;
+    } finally {
+      generateBtn.disabled = selected.size === 0;
+    }
+  }
+
+  renderPicker();
+  updateCount();
+  generateBtn.addEventListener("click", generate);
+})();
+</script>
 </body>
 </html>
