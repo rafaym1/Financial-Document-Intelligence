@@ -192,11 +192,13 @@ with gr.Blocks(title="Financial Document Intelligence") as demo:
                 fn=handle_question,
                 inputs=[question_box],
                 outputs=[answer_box, sources_box, verification_box],
+                api_name="handle_question",
             )
             question_box.submit(
                 fn=handle_question,
                 inputs=[question_box],
                 outputs=[answer_box, sources_box, verification_box],
+                api_name=False,
             )
 
         with gr.Tab("Reports", id="reports"):
